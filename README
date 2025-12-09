@@ -1,0 +1,34 @@
+# Diffusion Loadtest (Python, Async)
+
+Kleines Tool zum Testen von Parallelität/Last für ein OpenAI-kompatibles Diffusion-Endpoint (`POST /v1/images/generations` mit `response_format=b64_json`).  
+Es schickt **N Requests** mit **Concurrency C**, misst die Zeiten, listet jede Anfrage einzeln und gibt eine Zusammenfassung (Ø, p50/p95/p99, Fehler) aus. Optional speichert es die Bilder als PNG.
+
+## Features
+
+- Anzahl Requests (`-r/--requests`) und Parallelität (`-c/--concurrency`)
+- Ausgabe pro Request: `idx, ok, status, ms, error`
+- Summary: Success/Error Count, Average (ok + all), Min/Max, p50/p95/p99 (ok)
+- Optional: Bilder speichern (`--output-dir`)
+- Optional: Bearer Token (`--bearer-token`)
+- Timeouts konfigurierbar
+- Exitcode `0` bei Erfolg, `2` wenn Fehler auftraten (praktisch für CI)
+
+## Voraussetzungen
+
+- Python 3.9+ empfohlen
+- Paket: `httpx`
+
+## Installation
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install httpx
+
+
+
+python3 diffusion_loadtest.py \
+  --endpoint "https://DEIN-ENDPOINT.net" \
+  -r 20 -c 5 \
+  --output-dir ./out_images
