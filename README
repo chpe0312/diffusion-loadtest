@@ -32,3 +32,8 @@ python3 diffusion_loadtest.py \
   --endpoint "https://DEIN-ENDPOINT.net" \
   -r 20 -c 5 \
   --output-dir ./out_images
+
+usage: diffusion_loadtest.py [-h] --endpoint ENDPOINT [--model MODEL] [--prompt PROMPT] [--size SIZE] [--n N] [-r REQUESTS] [-c CONCURRENCY] [--output-dir OUTPUT_DIR] [--bearer-token BEARER_TOKEN] [--insecure] [--connect-timeout CONNECT_TIMEOUT] [--read-timeout READ_TIMEOUT] [--write-timeout WRITE_TIMEOUT]
+                             [--pool-timeout POOL_TIMEOUT]
+
+
